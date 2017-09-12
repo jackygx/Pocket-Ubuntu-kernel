@@ -1,1 +1,0 @@
-/usr/src/linux-4.12-rc2/scripts/gdb/vmlinux-gdb.py
