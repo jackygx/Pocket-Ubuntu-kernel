@@ -44,7 +44,7 @@
 
 #define DRIVER_DESC "HID core driver"
 
-int hid_debug = 1;
+int hid_debug = 0;
 module_param_named(debug, hid_debug, int, 0600);
 MODULE_PARM_DESC(debug, "toggle HID debugging messages");
 EXPORT_SYMBOL_GPL(hid_debug);
