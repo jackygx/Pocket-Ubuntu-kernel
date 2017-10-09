@@ -3198,7 +3198,6 @@ int rt5645_set_jack_detect(struct snd_soc_codec *codec,
 	struct snd_soc_jack *hp_jack, struct snd_soc_jack *mic_jack,
 	struct snd_soc_jack *btn_jack)
 {
-printk("rt5645_irq\n");
 	struct rt5645_priv *rt5645 = snd_soc_codec_get_drvdata(codec);
 
 	rt5645->hp_jack = hp_jack;
@@ -3222,10 +3221,10 @@ static void rt5645_jack_detect_work(struct work_struct *work)
 	struct rt5645_priv *rt5645 =
 		container_of(work, struct rt5645_priv, jack_detect_work.work);
 	int val, btn_type, gpio_state = 0, report = 0;
-printk("rt5645_jack_detect_work\n");
+
 	if (!rt5645->codec)
 		return;
-printk("rt5645->pdata.jd_mode=%d\n",rt5645->pdata.jd_mode);
+
 	switch (rt5645->pdata.jd_mode) {
 	case 0: /* Not using rt5645 JD */
 		if (rt5645->gpiod_hp_det) {
@@ -3340,7 +3339,7 @@ static void rt5645_rcclock_work(struct work_struct *work)
 static irqreturn_t rt5645_irq(int irq, void *data)
 {
 	struct rt5645_priv *rt5645 = data;
-printk("rt5645_irq\n");
+
 	queue_delayed_work(system_power_efficient_wq,
 			   &rt5645->jack_detect_work, msecs_to_jiffies(250));
 
